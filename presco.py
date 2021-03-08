@@ -2,7 +2,7 @@
 
 Usage:
   presco.py helios <pretix_csv> [--out=<out_name>]
-  presco.py pizza <pretix_csv> [--out=<out_name>]
+  presco.py vvv <pretix_csv> [--out=<out_name>]
 
 Options:
   -h --help         Show this screen.
@@ -40,7 +40,7 @@ def convert_helios(data):
     return new_data
 
 
-def convert_pizza(data):
+def convert_vvv(data):
     new_data = pd.DataFrame(columns=["e-mail"])
 
     for i, row in data.iterrows():
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     if (args["helios"]):
         csv_path_out = Path(args["--out"] or f"{csv_path_in.stem}_helios.csv")
         new_data = convert_helios(data)
-    elif (args["pizza"]):
-        csv_path_out = Path(args["--out"] or f"{csv_path_in.stem}_pizza.csv")
-        new_data = convert_pizza(data)
+    elif (args["vvv"]):
+        csv_path_out = Path(args["--out"] or f"{csv_path_in.stem}_vvv.csv")
+        new_data = convert_vvv(data)
     else:
         print("No valid conversion mode provided", file=sys.stderr)
         exit()
